@@ -3,24 +3,42 @@ const Hello = (props) => {
 	return (
 		<div>
 			<p>
-				Hello {props.name}, you are {props.age} years old
+				Hello {props.name}, you are {props.age} years old.
 			</p>
 		</div>
 	);
 };
 
 const Footer = () => {
-	return [<h1>damb</h1>, <p>balls</p>];
+	return [<p>damb</p>, <p>balls</p>];
+};
+
+const balls = () => {
+	const friends = [
+		{ name: "Peter", age: 4 },
+		{ name: "Maya", age: 10 },
+	];
+
+	const array = [];
+	for (let index = 0; index < friends.length; index++) {
+		const element = friends[index];
+		array.push(<Hello name={friends[index].name} age={friends[index].age} />);
+	}
+	return array;
 };
 
 const App = () => {
-	const friends = ["Peter", "Maya"];
+	const friends = [
+		{ name: "Peter", age: 4 },
+		{ name: "Maya", age: 10 },
+	];
 
 	return (
 		<div>
-			<p>{friends}</p>
+			{/* <p>{friends}</p> */}
+			<Hello name={friends[0].name} age={friends[0].age} />
 		</div>
 	);
 };
 
-export default App;
+export default balls;
