@@ -1,44 +1,37 @@
-const Hello = (props) => {
-	console.log(props);
-	return (
-		<div>
-			<p>
-				Hello {props.name}, you are {props.age} years old.
-			</p>
-		</div>
-	);
-};
+import { useState } from "react";
 
-const Footer = () => {
-	return [<p>damb</p>, <p>balls</p>];
-};
+const Display = ({ counter }) => <div>{counter}</div>;
 
-const balls = () => {
-	const friends = [
-		{ name: "Peter", age: 4 },
-		{ name: "Maya", age: 10 },
-	];
-
-	const array = [];
-	for (let index = 0; index < friends.length; index++) {
-		const element = friends[index];
-		array.push(<Hello name={friends[index].name} age={friends[index].age} />);
-	}
-	return array;
-};
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
 const App = () => {
-	const friends = [
-		{ name: "Peter", age: 4 },
-		{ name: "Maya", age: 10 },
-	];
+	const [counter, setCounter] = useState(0);
+
+	console.log("rendering with counter value", counter);
+
+	const increaseByOne = () => {
+		console.log("increasing, value before", counter);
+		setCounter(counter + 1);
+	};
+
+	const decreaseByOne = () => {
+		console.log("decreasing, value before", counter);
+		setCounter(counter - 1);
+	};
+
+	const setToZero = () => {
+		console.log("resetting to zero, value before", counter);
+		setCounter(0);
+	};
 
 	return (
 		<div>
-			{/* <p>{friends}</p> */}
-			<Hello name={friends[0].name} age={friends[0].age} />
+			<Display counter={counter} />
+			<Button onClick={increaseByOne} text="plus" />
+			<Button onClick={setToZero} text="zero" />
+			<Button onClick={decreaseByOne} text="minus" />
 		</div>
 	);
 };
 
-export default balls;
+export default App;
